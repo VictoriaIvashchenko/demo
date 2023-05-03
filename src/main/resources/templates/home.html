@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${title}"></title>
+    <link rel = "stylesheet" type="text/css" href = "../static/css/style.css" th:href="@{/css/style.css}">
+</head>
+<body>
+<H1>Аналіз діагностичної інформації</H1>
+<div>
+    <div>
+        <svg width="1200" height="800"></svg>
+    </div>
+    <div>
+
+    </div>
+</div>
+<script src="//d3js.org/d3.v4.min.js"></script>
+<script type="text/javascript" th:src="@{/js/home.js}"></script>
+
+
+</body>
+</html>
