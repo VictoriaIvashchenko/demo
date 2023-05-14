@@ -19,7 +19,6 @@ public class Mapper {
             ObjectMapper objectMapper = new ObjectMapper();
             objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
             Graph graph = objectMapper.readValue(file, Graph.class);
-            //ArrayList<Link> links = graph.getLinks();
             for (int i = 0; i < newStates.size(); i++) {
                 for (Node node : graph.getNodes()) {
                     if (node.getId() == newStates.get(i).get(0)) {
@@ -38,7 +37,6 @@ public class Mapper {
                     }
                 }
             }
-            //graph.setLinks(links);
             objectMapper.writeValue(file, graph);
             return objectMapper.writeValueAsString(graph);
         }

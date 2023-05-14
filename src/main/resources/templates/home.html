@@ -19,26 +19,41 @@
         <div class="test-title">
             Поточний стан системи
         </div>
-        <div class="diagnoses">
+        <div class="diagnoses" id="resultInfo">
+            <span>
+                System isn't working...
+            </span>
+
 
         </div>
-
-
-        <button class="start" id="start" type="button">
-            <div class="box-3">
-                <div class="btn btn-three">
-                    <span>Start</span>
+            <button id="restr" class="restr" type="button">
+                <div class="box-3">
+                    <div class="btn btn-three">
+                        <span>Start</span>
+                    </div>
                 </div>
-            </div>
-        </button>
+            </button>
 
-        <button id="restr" class="restr" type="button">
-            <div class="box-3">
-                <div class="btn btn-three">
-                    <span>Reset</span>
+            <button id="refresh" class="refresh" type="button">
+                <div class="box-3">
+                    <div class="btn btn-three">
+                        <span>Fix</span>
+                    </div>
                 </div>
-            </div>
-        </button>
+            </button>
+
+            <button class="start" id="start" type="button">
+                <div class="box-3">
+                    <div class="btn btn-three">
+                        <span>Update view</span>
+                    </div>
+                </div>
+            </button>
+
+
+
+
+
 
     </div>
 
@@ -71,6 +86,40 @@
         $("#svgParent").append("<svg id=\"svg\" width=\"800\" height=\"800\"></svg>")
     }
 
+    function textInfo(json){
+        $("#resultInfo").append("<span style='display: block; margin-bottom: 10px'><br>------diagnostics started------</span>");
+        var target = false
+        $.each(json, function(index, value) {
+            console.log(value);
+            $.each(value,function (index, val){
+                if(val.state === 'breakdown'){
+                    $("<span style='display: block; margin-top: 10px'>").text("[ERROR]::______module_ " + val.id + "___is_marked_as_broken").appendTo("#resultInfo");
+                    target = true
+                }
+                if(val.state === 'failure'){
+                    $("<span style='display: block; margin-top: 10px'>").text("[WARNING]::___module_ " + val.id + "___is_working_establish").appendTo("#resultInfo");
+                    target = true
+
+                }
+            })
+        });
+
+        if(target){
+            $("#resultInfo").append("<span><br>[COMMENTARY]:: Check the modules in which the error was found.</span>");
+        }
+        else {
+            $("#resultInfo").append("<span><br>The system operates in normal mode</span>");
+
+
+        }
+        $("#resultInfo").append("<span style='display: block; margin-bottom: 10px'><br>------diagnostics finished------</span>");
+
+    }
+
+    function textRefr(){
+        $("#resultInfo").append("<span style='display: block; margin-bottom: 10px'><br>------fixing errors------</span>");
+
+    }
     function drawGraph(data) {
         clearSvg();
         var svg = d3.select("svg"),
@@ -175,6 +224,23 @@
         });
     })
 
+    $('#refresh').on('click', () => {
+        $.ajax({
+            url: 'http://localhost:8081/refresh',
+            type: 'GET',
+            contentType: 'application/json',
+            success: function (data) {
+                console.log(data);
+                textRefr()
+                drawGraph(JSON.parse(data));
+            },
+            error: function (xhr, status, error) {
+                console.error('Error retrieving data');
+                console.error(xhr, status, error);
+            }
+        });
+    })
+
     $('#restr').on('click', () => {
         $.ajax({
             url: 'http://localhost:8081/do-stuff',
@@ -182,6 +248,7 @@
             contentType: 'application/json',
             success: function (data) {
                 console.log(data);
+                textInfo(JSON.parse(data))
                 drawGraph(JSON.parse(data));
             },
             error: function (xhr, status, error) {

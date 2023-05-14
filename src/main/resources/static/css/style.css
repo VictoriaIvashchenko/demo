@@ -98,23 +98,46 @@ body{
     margin-left: 50px;
     width: 650px;
     height: 630px;
-    background-color: chocolate;
+    background-color: #588B8B;
+    border: 2px solid #FFFFFF;
+    overflow-y: auto;
 }
+::-webkit-scrollbar {
+    display: none;
+}
+
 .restr{
     background-color: #588B8B;
     border: none;
     width: 150px;
     height: 100px;
-    margin-left: 225px;
+    margin-left: 60px;
     margin-top: 15px;
 
 }
 
 .start{
-    margin-top: 15px;
+    margin-top: -250px;
     background-color: #588B8B;
     border: none;
     width: 150px;
-    margin-left: 100px;
+    margin-left: 325px;
 
 }
+
+.refresh{
+    margin-top: 31px;
+    background-color: #588B8B;
+    border: none;
+    width: 150px;
+    margin-left: 90px;
+    position: absolute;
+}
+
+.diagnoses span{
+    display: block;
+    margin-left: 15px;
+    margin-top: 0px;
+    margin-bottom: -20px;
+}
+

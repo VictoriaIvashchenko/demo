@@ -1,9 +1,6 @@
 package com.example.demo.controllers;
 
-import com.example.demo.models.AjaxJsonSender;
-import com.example.demo.models.Diagnostic;
-import com.example.demo.models.Graph;
-import com.example.demo.models.Mapper;
+import com.example.demo.models.*;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,6 +41,14 @@ public class MainController {
         Mapper mapper = new Mapper();
         ArrayList<ArrayList<Integer>> result = diagnostic.work();
         String json = mapper.reDraw(result);
+        return new ResponseEntity(json, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/refresh")
+    public ResponseEntity refreshGraph() throws InterruptedException, IOException {
+        System.out.println("Click!");
+        FIxElement fIxElement = new FIxElement();
+        String json = fIxElement.reDraw();
         return new ResponseEntity(json, HttpStatus.OK);
     }
 
