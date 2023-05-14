@@ -20,7 +20,7 @@ public class Diagnostic {
 
     public ArrayList<ArrayList<Integer>> work() throws InterruptedException {
         records = getMatrix("src/main/resources/static/graph.csv");
-        test = getMatrix("src/main/resources/static/test1.csv");
+        test = getMatrix("src/main/resources/static/test3.csv");
         ArrayList<ArrayList<Integer>> result = walk2();
         return result;
     }
@@ -60,15 +60,18 @@ public class Diagnostic {
                 System.out.println("Виявлена помилка");
                 resultDiagnose = oneErr(rResult[1]);
                 System.out.println(resultDiagnose);
-                break;
             }
             if(rResult[0] > 1){
-                multyErr(rResult[1]);
+                resultDiagnose = multyErr(rResult[1]);
+                System.out.println(resultDiagnose);
             }
             if (rResult[0] > 0){
                 sleep(3200);
             }
-        }while (resultDiagnose != null);
+            if(resultDiagnose == null){
+                continue;
+            }
+        }while (resultDiagnose.size() == 0);
 
         return resultDiagnose;
     }
@@ -227,7 +230,8 @@ public class Diagnostic {
 
     }
 
-    public void multyErr(int idNode) {
+    public ArrayList<ArrayList<Integer>> multyErr(int idNode) {
+        ArrayList<ArrayList<Integer>> finalResult = new ArrayList<>();
         System.out.println("Збій чи помилка в декількох вузлах");
 
         //видалення ребер з результатом - 1
@@ -347,8 +351,12 @@ public class Diagnostic {
                 sums.add(sum);
             }
             for(int i = 0; i < testInfo.size(); i++){
+                ArrayList<Integer> resInfo = new ArrayList<>();
                 if(testInfo.get(i).get(2) == 1){
                     if (sums.get(i) != count){
+                        resInfo.add(testInfo.get(i).get(0) + 1);
+                        resInfo.add(2);
+                        finalResult.add(resInfo);
                         System.out.println("У вузлі " + testInfo.get(i).get(0) + " збій");
                     }else {
                         System.out.println("Вузол " + testInfo.get(i).get(0) + " непрацює");
@@ -356,6 +364,9 @@ public class Diagnostic {
                 }
                 if(testInfo.get(i).get(2) == 0){
                     if (sums.get(i) != 0){
+                        resInfo.add(testInfo.get(i).get(0) + 1);
+                        resInfo.add(1);
+                        finalResult.add(resInfo);
                         System.out.println("У вузлі " + testInfo.get(i).get(0) + " збій");
                     }else {
                         System.out.println("Вузол " + testInfo.get(i).get(0) + " працює");
@@ -499,9 +510,17 @@ public class Diagnostic {
             }
 
             System.out.println("Несправні вузли " + errNodes);
+            for(int i = 0; i < errNodes.size(); i++){
+                ArrayList<Integer> resInfo = new ArrayList<>();
+                resInfo.add(errNodes.get(i) + 1);
+                resInfo.add(2);
+                finalResult.add(resInfo);
+            }
             System.out.println("Робочі вузли " + workNode);
 
         }
+        System.out.println(finalResult);
+        return finalResult;
     }
 
     public int[][] drawMatrix (){
