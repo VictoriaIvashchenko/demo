@@ -8,54 +8,47 @@
     {
       "id": 2,
       "name": "02",
-      "state": "failure"
+      "state": "succeed"
     },
     {
       "id": 3,
       "name": "03",
-      "state": "breakdown"
+      "state": "succeed"
     },
     {
       "id": 4,
       "name": "04",
       "state": "succeed"
-
     },
     {
       "id": 5,
       "name": "05",
       "state": "succeed"
-
     },
     {
       "id": 6,
       "name": "06",
       "state": "succeed"
-
     },
     {
       "id": 7,
       "name": "07",
       "state": "succeed"
-
     },
     {
       "id": 8,
       "name": "08",
       "state": "succeed"
-
     },
     {
       "id": 9,
       "name": "09",
       "state": "succeed"
-
     },
     {
       "id": 10,
       "name": "10",
       "state": "succeed"
-
     },
     {
       "id": 11,
@@ -65,65 +58,55 @@
     {
       "id": 12,
       "name": "12",
-      "state": "failure"
+      "state": "succeed"
     },
     {
       "id": 13,
       "name": "13",
-      "state": "breakdown"
+      "state": "succeed"
     },
     {
       "id": 14,
       "name": "14",
       "state": "succeed"
-
     },
     {
       "id": 15,
       "name": "15",
       "state": "succeed"
-
     },
     {
       "id": 16,
       "name": "16",
       "state": "succeed"
-
     },
     {
       "id": 17,
       "name": "17",
       "state": "succeed"
-
     },
     {
       "id": 18,
       "name": "18",
       "state": "succeed"
-
     },
     {
       "id": 19,
       "name": "19",
       "state": "succeed"
-
     },
     {
       "id": 20,
       "name": "20",
       "state": "succeed"
-
     },
     {
       "id": 21,
       "name": "21",
       "state": "succeed"
-
     }
-
   ],
   "links": [
-
     {
       "source": 1,
       "target": 4
