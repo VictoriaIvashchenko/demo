@@ -21,8 +21,7 @@ public class Diagnostic {
     public ArrayList<ArrayList<Integer>> work() throws InterruptedException {
         records = getMatrix("src/main/resources/static/graph.csv");
         test = getMatrix("src/main/resources/static/test3.csv");
-        ArrayList<ArrayList<Integer>> result = walk2();
-        return result;
+        return walk2();
     }
 
     public List<ArrayList<Integer>> getMatrix(String nameFile){

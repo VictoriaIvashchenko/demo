@@ -12,16 +12,16 @@
 <body>
 <div class="content">
     <div id="svgParent" class="graph">
-        <H1>Схематичне зображення системи</H1>
+        <H1>Schematic representation of the distributed information system</H1>
         <svg id="svg" width="800" height="800"></svg>
     </div>
     <div class="testInfo">
         <div class="test-title">
-            Поточний стан системи
+            Current state of the distributed information system elements
         </div>
         <div class="diagnoses" id="resultInfo">
             <span>
-                System isn't working...
+                System working...
             </span>
 
 
@@ -97,7 +97,7 @@
                     target = true
                 }
                 if(val.state === 'failure'){
-                    $("<span style='display: block; margin-top: 10px'>").text("[WARNING]::___module_ " + val.id + "___is_working_establish").appendTo("#resultInfo");
+                    $("<span style='display: block; margin-top: 10px'>").text("[WARNING]::___module_ " + val.id + "___is_works_unstable").appendTo("#resultInfo");
                     target = true
 
                 }
@@ -105,7 +105,7 @@
         });
 
         if(target){
-            $("#resultInfo").append("<span><br>[COMMENTARY]:: Check the modules in which the error was found.</span>");
+            $("#resultInfo").append("<span><br>[TIP]:: Check the modules in where the errors was found.</span>");
         }
         else {
             $("#resultInfo").append("<span><br>The system operates in normal mode</span>");
