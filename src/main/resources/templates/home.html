@@ -45,7 +45,7 @@
             <button class="start" id="start" type="button">
                 <div class="box-3">
                     <div class="btn btn-three">
-                        <span>Update view</span>
+                        <span>Show</span>
                     </div>
                 </div>
             </button>
@@ -87,7 +87,7 @@
     }
 
     function textInfo(json){
-        $("#resultInfo").append("<span style='display: block; margin-bottom: 10px'><br>------diagnostics started------</span>");
+        $("#resultInfo").append("<span style='display: block; margin-bottom: 10px'><br>------analysis started------</span>");
         var target = false
         $.each(json, function(index, value) {
             console.log(value);
@@ -112,7 +112,7 @@
 
 
         }
-        $("#resultInfo").append("<span style='display: block; margin-bottom: 10px'><br>------diagnostics finished------</span>");
+        $("#resultInfo").append("<span style='display: block; margin-bottom: 10px'><br>------analysis completed------</span>");
 
     }
 
@@ -216,6 +216,7 @@
             success: function (data) {
                 console.log(data);
                 drawGraph(JSON.parse(data));
+                textInfo(JSON.parse(data))
             },
             error: function (xhr, status, error) {
                 console.error('Error retrieving data');
@@ -248,8 +249,6 @@
             contentType: 'application/json',
             success: function (data) {
                 console.log(data);
-                textInfo(JSON.parse(data))
-                drawGraph(JSON.parse(data));
             },
             error: function (xhr, status, error) {
                 console.error('Error retrieving data');

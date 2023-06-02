@@ -83,10 +83,6 @@
                 return "translate(" + d.x + "," + d.y + ")";
             });
         }
-
-        node = svg.selectAll(".node")
-            .duration(750)
-            .data(data.nodes)
     })
 
 

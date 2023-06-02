@@ -1,5 +1,7 @@
 package com.example.demo.models;
 
+import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.io.BufferedReader;
@@ -18,9 +20,10 @@ public class Diagnostic {
     public List<ArrayList<Integer>> records = new ArrayList<>();
     public int [][] matrix = new int [21][21];
 
-    public ArrayList<ArrayList<Integer>> work() throws InterruptedException {
+    public ArrayList<ArrayList<Integer>> work(int k) throws InterruptedException {
         records = getMatrix("src/main/resources/static/graph.csv");
-        test = getMatrix("src/main/resources/static/test3.csv");
+        String path = "src/main/resources/static/test" + k + ".csv";
+        test = getMatrix(path);
         return walk2();
     }
 
